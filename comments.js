@@ -1,18 +1,19 @@
-// create web server    
-// 1. load modules
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
-var qs = require('querystring');
-// 2. create server
-http.createServer(function (request, response) {
-    // 2.1 get url
-    var pathname = url.parse(request.url).pathname;
-    console.log(pathname);
-    // 2.2 get method
-    if (pathname == '/comment') {
-        // 2.2.1 get method
-        var method = request.method;
-        console.log(method);
-        if (method == 'GET') {
-            //
+// create web server again
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.get('/comments', (req, res) => {
+  res.send('Comments!');
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+
+// Run the server and visit http://localhost:3000/comments
+// You should see "Comments!" in the browser
